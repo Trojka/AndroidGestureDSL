@@ -5,7 +5,7 @@ import java.util.List;
 
 import android.test.AndroidTestCase;
 
-public class TouchHandlerConditionalTests extends AndroidTestCase {
+public class TouchHandlerSingleGestureConditionalTests extends AndroidTestCase {
     private List<String> messageList;
 
 	@Override
@@ -13,5 +13,7 @@ public class TouchHandlerConditionalTests extends AndroidTestCase {
 		super.setUp();
 	    messageList = new ArrayList<String>();
 	}
-	
+
+    public void testDownAndConditional() {
+    }
 }

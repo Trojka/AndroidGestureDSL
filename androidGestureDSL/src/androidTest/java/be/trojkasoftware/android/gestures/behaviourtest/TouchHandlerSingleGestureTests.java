@@ -11,7 +11,7 @@ import android.os.SystemClock;
 import android.test.AndroidTestCase;
 import android.view.MotionEvent;
 
-public class TouchHandlerSingleGesureTests extends AndroidTestCase {
+public class TouchHandlerSingleGestureTests extends AndroidTestCase {
     private List<String> messageList;
 
 	@Override

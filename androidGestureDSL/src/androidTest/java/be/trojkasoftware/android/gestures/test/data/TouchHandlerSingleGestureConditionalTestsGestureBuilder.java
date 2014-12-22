@@ -10,9 +10,9 @@ import be.trojkasoftware.android.gestures.dsl.GestureBuilder;
 import be.trojkasoftware.android.gestures.test.utils.EvaluateCondition;
 import be.trojkasoftware.android.gestures.test.utils.InsertMessageAction;
 
-public class TouchHandlerConditionalTestsGestureBuilder extends GestureBuilder<View> {
+public class TouchHandlerSingleGestureConditionalTestsGestureBuilder extends GestureBuilder<View> {
 	
-	public TouchHandlerConditionalTestsGestureBuilder()
+	public TouchHandlerSingleGestureConditionalTestsGestureBuilder()
 	{
 		super(null);
 	}
@@ -22,17 +22,17 @@ public class TouchHandlerConditionalTestsGestureBuilder extends GestureBuilder<V
 		TouchGesture gesture = new TouchGesture("OrderOfEventsTouchGesture");
 		
 		this.Create(gesture).TouchDown()
-				.If(getConditionWithResult(downResult))
+				.If(getConditionWithResult(downResult, "EvaluateDown", messageList))
 					.Do2(registerAction("DownTrue", messageList))
 				.Else()
 					.Do3(registerAction("DownFalse", messageList))
 			.AndNext().Move()
-				.If(getConditionWithResult(moveResult))
+				.If(getConditionWithResult(moveResult, "EvaluateMove", messageList))
 					.Do2(registerAction("MoveTrue", messageList))
 				.Else()
 					.Do3(registerAction("MoveFalse", messageList))
 			.AndNext().TouchUp()
-				.If(getConditionWithResult(upResult))
+				.If(getConditionWithResult(upResult, "EvaluateUp", messageList))
 					.Do2(registerAction("UpTrue", messageList))
 				.Else()
 					.Do3(registerAction("UpFalse", messageList))
@@ -41,8 +41,8 @@ public class TouchHandlerConditionalTestsGestureBuilder extends GestureBuilder<V
 		return gesture;
 	}	
 	
-	IGestureCondition getConditionWithResult(boolean result) {
-		return new EvaluateCondition(getBase(), result);
+	IGestureCondition getConditionWithResult(boolean result, String message, List<String> messageList) {
+		return new EvaluateCondition(getBase(), result, message, messageList);
 	}
 
 	IGestureAction registerAction(String message, List<String> messageList)
